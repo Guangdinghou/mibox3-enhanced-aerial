@@ -47,6 +47,39 @@ class WorkflowTests(unittest.TestCase):
             self.assertNotEqual(0, result.returncode)
             self.assertIn("空文件", result.stderr)
 
+    def test_root_backup_requires_images_in_verified_manifest(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            basic = ("packages.txt", "disabled.txt", "getprop.txt", "settings-system.txt", "partition-map.txt")
+            for name in basic:
+                (root / name).write_text(name, encoding="utf-8")
+            lines = []
+            for name in basic:
+                digest = hashlib.sha256((root / name).read_bytes()).hexdigest()
+                lines.append(f"{digest}  {name}\n")
+            (root / "manifest.sha256").write_text("".join(lines), encoding="utf-8")
+            result = run_script("11-verify-backup.sh", "--root", str(root))
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn("ROOT 备份缺少", result.stderr)
+
+    def test_root_backup_accepts_hashed_images_and_original_script(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            names = (
+                "packages.txt", "disabled.txt", "getprop.txt", "settings-system.txt", "partition-map.txt",
+                "boot.img", "recovery.img", "system.img", "install-recovery.sh",
+            )
+            for name in names:
+                (root / name).write_bytes(name.encode())
+            lines = []
+            for name in names:
+                digest = hashlib.sha256((root / name).read_bytes()).hexdigest()
+                lines.append(f"{digest}  {name}\n")
+            (root / "manifest.sha256").write_text("".join(lines), encoding="utf-8")
+            result = run_script("11-verify-backup.sh", "--root", str(root))
+            self.assertEqual(0, result.returncode, result.stderr)
+            self.assertTrue((root / ".root-verified").exists())
+
     def test_debloat_lists_are_safe_and_disjoint(self):
         result = run_script("40-debloat.sh", "--check-lists")
         self.assertEqual(0, result.returncode, result.stderr)
@@ -84,6 +117,23 @@ class WorkflowTests(unittest.TestCase):
             with self.subTest(name=name):
                 result = run_script(name, "--help")
                 self.assertEqual(0, result.returncode, f"{name}: {result.stderr}")
+
+    def test_one_click_launcher_lists_guided_stages(self):
+        result = subprocess.run(
+            ["bash", str(ROOT / "start.sh"), "--list"],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+        )
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(
+            ["1. 设备检查", "2. 备份", "3. 下载资源", "4. 临时 ROOT", "5. 永久 ROOT", "6. 应用清理", "7. Aerial 桌面", "8. 状态验证", "9. 完整恢复"],
+            result.stdout.splitlines(),
+        )
+
+    def test_windows_one_click_entry_files_exist(self):
+        self.assertTrue((ROOT / "start.cmd").is_file())
+        self.assertTrue((ROOT / "start.ps1").is_file())
 
 
 if __name__ == "__main__":

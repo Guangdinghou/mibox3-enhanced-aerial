@@ -6,6 +6,16 @@
 
 ## 快速开始
 
+### 普通用户一键向导
+
+- Windows：安装 Android Platform Tools 和 Git for Windows 后，双击 `start.cmd`。
+- macOS：安装 Android Platform Tools 后，双击 `start.command`；若系统阻止首次运行，可在终端执行 `bash start.sh`。
+- Linux：执行 `bash start.sh`。
+
+向导按阶段显示中文菜单，不会无人值守地连续 ROOT 或删除应用。涉及系统写入时仍会要求输入精确确认语句，这是防止选错设备和误操作的必要门禁。
+
+### 手动分阶段
+
 1. 安装 Android Platform Tools，使用 USB 数据线连接盒子并开启 ADB 调试。
 2. 运行 `scripts/00-doctor.sh`，确认所有只读检查通过。
 3. 运行 `scripts/10-backup.sh`，再用 `scripts/11-verify-backup.sh` 校验备份。

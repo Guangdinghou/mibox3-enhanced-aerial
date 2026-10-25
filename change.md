@@ -8,3 +8,5 @@
 - 增加基础备份与哈希验证、固定来源下载、临时 ROOT 检查和 SuperSU system-mode 安装/撤销流程。
 - 增加设备专用应用清单、逐包清理与恢复、Aerial 安装配置、小米桌面可逆停用和恢复脚本。
 - 增加重启验证、总恢复编排，以及备份、ROOT、应用、Aerial、验收和故障排查文档。
+- 发布前自审修正：永久 ROOT 现在强制验证三份完整镜像和原厂恢复脚本均已列入哈希清单；Aerial 布局改从包信息读取 UID，避免依赖旧 Android 缺失的 `stat -c`；补齐原版 `app_process_init` 的属主、权限和安全上下文。
+- 增加普通用户中文一键向导：macOS/Linux 使用 `start.sh`/`start.command`，Windows 双击 `start.cmd` 进入 PowerShell 菜单；危险步骤继续保留备份门禁和精确确认。

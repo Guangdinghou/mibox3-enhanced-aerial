@@ -4,8 +4,8 @@ ROOT=$(cd "$(dirname "$0")/.." && pwd); . "$ROOT/lib/guard.sh"
 [ "${1:-}" = --help ] && { echo '用法：scripts/31-install-permanent-root.sh <含完整镜像的已验证备份目录>'; exit 0; }
 [ "${1:-}" = --dry-run ] && { echo '执行链：adb shell /data/local/tmp/mtk-su64 -c "sh /data/local/tmp/mibox-root/device-root-install.sh"'; exit 0; }
 BAK=${1:?请指定备份目录}; require_adb; read_device_facts; require_target_device
-[ -f "$BAK/.verified" ] || die '备份尚未通过校验'
-for f in boot.img recovery.img system.img install-recovery.sh; do [ -s "$BAK/$f" ] || die "缺少 ROOT 前备份：$f"; done
+"$ROOT/scripts/11-verify-backup.sh" --root "$BAK"
+[ -f "$BAK/.root-verified" ] || die '完整 ROOT 备份尚未通过校验'
 for f in su supolicy libsupol.so SuperSU.apk install-recovery-upstream.sh; do [ -s "$ROOT/downloads/supersu/$f" ] || die "缺少人工校验的 SuperSU 2.82-SR3 资源：$f"; done
 [ -s "$ROOT/downloads/mtk-su64" ] || die '缺少已校验的 mtk-su64'
 require_confirmation '安装永久ROOT' '这会修改 /system。确认镜像、固件和恢复能力均已核对。'

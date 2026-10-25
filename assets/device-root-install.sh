@@ -27,6 +27,9 @@ cp "$SRC/install-recovery-upstream.sh" /system/etc/install-recovery.sh
 chmod 755 /system/etc/install-recovery.sh
 chcon u:object_r:system_file:s0 /system/etc/install-recovery.sh
 cp /system/bin/app_process64 /system/bin/app_process_init
+chown 0:2000 /system/bin/app_process_init
+chmod 755 /system/bin/app_process_init
+chcon u:object_r:system_file:s0 /system/bin/app_process_init
 mv /system/bin/app_process64 /system/bin/app_process64_original
 ln -s /system/xbin/daemonsu /system/bin/app_process64
 rm /system/bin/app_process
