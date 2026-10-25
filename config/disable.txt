@@ -1,0 +1,6 @@
+# 广告与统计组件：仅停用，可随时恢复
+com.miui.systemAdSolution
+com.miui.tv.analytics
+com.xiaomi.statistic
+com.xiaomi.devicereport
+com.mitv.gallery

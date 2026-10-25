@@ -18,6 +18,13 @@
 
 - [兼容性](docs/compatibility.md)
 - [安全边界](docs/safety.md)
+- [备份与恢复](docs/backup-and-recovery.md)
+- [第三方资源](docs/sources.md)
+- [ROOT](docs/root.md)
+- [应用清理](docs/apps.md)
+- [Aerial 桌面](docs/aerial.md)
+- [验收清单](docs/checklist.md)
+- [故障排查](docs/troubleshooting.md)
 - [设计](docs/2026-10-25-design.md)
 - [实施计划](docs/plans/2026-10-25-implementation.md)
 

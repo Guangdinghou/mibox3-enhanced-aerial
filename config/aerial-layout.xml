@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <string name="order">com.huawei.himovceie,com.xiaodianshi.tv.yst,com.hpplay.happyplay.aw,com.xiaomi.smarthome.tv,com.xiaomi.mitv.mediaexplorer,com.xiaomi.mitv.tvmanager,com.xiaomi.mitv.smartshare,com.xiaomi.mitv.systemui,com.xiaomi.mitv.settings,com.dangbeimarket,com.xiaomi.mitv.appstore,eu.chainfire.supersu,shortcut:kids,com.mitv.tvhome</string>
+    <set name="hidden">
+        <string>eu.chainfire.supersu</string>
+        <string>shortcut:kids</string>
+        <string>com.xiaomi.mitv.appstore</string>
+        <string>com.mitv.tvhome</string>
+    </set>
+</map>

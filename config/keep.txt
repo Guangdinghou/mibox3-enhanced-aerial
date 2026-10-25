@@ -1,0 +1,8 @@
+com.huawei.himovceie
+com.xiaomi.mitv.tvmanager
+com.xiaodianshi.tv.yst
+com.hpplay.happyplay.aw
+com.xiaomi.smarthome.tv
+com.xiaomi.mitv.mediaexplorer
+com.xiaomi.mitv.smartshare
+app.orchard.tv

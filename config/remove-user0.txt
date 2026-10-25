@@ -1,0 +1,11 @@
+# 用户 0 清理：执行前逐包备份 APK
+com.jiajia.yundonghui.mitv
+com.xiaomi.mitv.shop
+com.xiaomi.tv.gallery
+com.xiaomi.voicecontrol
+com.xiaomi.mibox.gamecenter
+com.xiaomi.gamecenter.sdk.service.mibox
+com.mitv.shoplugin
+com.xiaomi.tweather
+com.xiaomi.mitv.calendar
+com.xiaomi.mimusic2
