@@ -1,0 +1,10 @@
+backup/
+downloads/
+work/
+shots/
+tools/adbkey/
+.DS_Store
+__pycache__/
+*.pyc
+.superpowers/
+
